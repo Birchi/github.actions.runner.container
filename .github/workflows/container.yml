@@ -12,6 +12,7 @@ jobs:
   deploy_image:
     runs-on: container-builder
     environment: Production
+    needs: build_image
     steps:
     - uses: actions/checkout@v4
     - name: Deploy container image
