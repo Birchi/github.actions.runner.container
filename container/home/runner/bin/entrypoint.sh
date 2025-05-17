@@ -33,5 +33,4 @@ fi
 
 cd /home/runner
 curl -fsSL https://raw.githubusercontent.com/Birchi/github-action-runner/refs/heads/development/install.sh | /bin/bash -s -- --directory /home/runner --repository ${RUNNER_URL} --token ${RUNNER_TOKEN} --name ${RUNNER_NAME} --group ${runner_group} --working-directory ${runner_working_directory}
-
-sleep infinity
+/home/runner/${RUNNER_NAME}/run.sh
