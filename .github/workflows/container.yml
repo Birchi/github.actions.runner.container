@@ -9,7 +9,7 @@ jobs:
     - name: Build container image
       run: |
         env
-        ./scripts/build.sh --name ${{ IMAGE_NAME }} --version latest --build-file-path "./Dockerfile"
+        ./scripts/build.sh --name ${IMAGE_NAME} --version latest --build-file-path "./Dockerfile"
   start_container:
     runs-on: container-builder
     environment: Production
