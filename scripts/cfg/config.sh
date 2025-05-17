@@ -13,7 +13,7 @@ LOG_LEVEL=INFO
 container_name=github-actions-runner
 container_workdir=/home/runner
 container_shell=/bin/bash
-container_start_parameters="-e RUNNER_URL=${RUNNER_URL} -e RUNNER_TOKEN=${RUNNER_TOKEN} -e RUNNER_NAME=${RUNNER_NAME} -e RUNNER_GROUP='Default' -e RUNNER_WORKING_DIRECTORY=_work"
+container_start_parameters="-e RUNNER_URL=${RUNNER_URL} -e RUNNER_TOKEN=${RUNNER_TOKEN} -e RUNNER_NAME=${RUNNER_DISPLAY_NAME} -e RUNNER_GROUP='Default' -e RUNNER_WORKING_DIRECTORY=_work"
 # Image
 image_name=github-actions-runner
 image_version=latest
