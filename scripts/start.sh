@@ -32,7 +32,7 @@ EOF
 
 function parse_cmd_args() {
     args=$(getopt --options n:v: \
-                  --longoptions name:,version:,start-params -- "$@")
+                  --longoptions name:,version:,start-params: -- "$@")
     
     if [[ $? -ne 0 ]]; then
         echo "Failed to parse arguments!" && usage
@@ -45,7 +45,7 @@ function parse_cmd_args() {
             -n | --name) container_name="$(eval echo $2)" ; shift 1 ;;
             -i | --image) image_name="$(eval echo $2)" ; shift 1 ;;
             -v | --version) image_version="$(eval echo $2)" ; shift 1 ;;
-            --start-params) start_parameters="$(eval echo $2)" ; shift 1 ;;
+            --start-params) container_start_parameters="$(eval echo $2)" ; shift 1 ;;
             --) ;;
              *) ;;
         esac
@@ -99,6 +99,11 @@ if ${start_cleanup_container_same_name} ; then
 fi
 {
     log INFO "Starting container ${container_name} with image ${image_name}:${image_version}."
-    container_hash=$(${container_engine} run -dit --name ${container_name} ${image_name}:${image_version})
+    container_hash=
+    if [ "${container_start_parameters}"  != "" ] ; then
+        container_hash=$(${container_engine} run -dit --name ${container_name} ${container_start_parameters} ${image_name}:${image_version})
+    else
+        container_hash=$(${container_engine} run -dit --name ${container_name} ${image_name}:${image_version})
+    fi
     log INFO "Started container ${container_name} with hash '${container_hash}'."
 } || error "Failed to start container ${container_name}"
