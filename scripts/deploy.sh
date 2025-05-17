@@ -78,7 +78,7 @@ fi
 if [ "${container_registry_username}" != "" ] && [ "${container_registry_password}" != "" ] ; then
     ${container_engine} login --username ${container_registry_username} \
                               --password ${container_registry_password} \
-                              --tls-verify ${container_registry_tls_verify} ${container_registry}
+                              ${container_registry}
 fi
 
 ${container_engine} tag ${image_name}:${image_version} ${container_registry}/${image_name}:${image_version}
