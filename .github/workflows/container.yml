@@ -26,4 +26,5 @@ jobs:
         RUNNER_GROUP: ${{ vars.RUNNER_GROUP }}
         RUNNER_TOKEN: ${{ vars.RUNNER_TOKEN }}
       run: |
+        env
         ./scripts/start.sh --name ${{ vars.CONTAINER_NAME }} --image ${{ vars.IMAGE_NAME }} --version latest
