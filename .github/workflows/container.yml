@@ -12,14 +12,14 @@ jobs:
   start_container:
     runs-on: container-builder
     environment: Production
-    env:
-      RUNNER_NAME: ${{ vars.RUNNER_NAME }}
-      RUNNER_URL: ${{ vars.RUNNER_URL }}
-      RUNNER_GROUP: ${{ vars.RUNNER_GROUP }}
-      RUNNER_TOKEN: ${{ vars.RUNNER_TOKEN }}
     needs: build_image
     steps:
     - uses: actions/checkout@v4
     - name: Start container
+      env:
+        RUNNER_NAME: ${{ vars.RUNNER_NAME }}
+        RUNNER_URL: ${{ vars.RUNNER_URL }}
+        RUNNER_GROUP: ${{ vars.RUNNER_GROUP }}
+        RUNNER_TOKEN: ${{ vars.RUNNER_TOKEN }}
       run: |
         ./scripts/start.sh --name ${{ vars.CONTAINER_NAME }} --image ${{ vars.IMAGE_NAME }} --version latest
