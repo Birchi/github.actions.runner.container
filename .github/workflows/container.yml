@@ -9,6 +9,14 @@ jobs:
     - name: Build container image
       run: |
         ./scripts/build.sh --name ${{ vars.IMAGE_NAME }} --version latest --build-file-path "./Dockerfile"
+  deploy_image:
+    runs-on: container-builder
+    environment: Production
+    steps:
+    - uses: actions/checkout@v4
+    - name: Deploy container image
+      run: |
+        ./scripts/deploy.sh --name ${{ vars.IMAGE_NAME }} --version latest --registry ${{ vars.REGISTRY_GITHUB_URI }} --registry-username ${{ secrets.REGISTRY_GITHUB_USERNAME }} --registry-password ${{ secrets.REGISTRY_GITHUB_PASSWORD }}
   start_container:
     runs-on: container-builder
     environment: Production
