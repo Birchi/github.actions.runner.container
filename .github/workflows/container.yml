@@ -17,6 +17,7 @@ jobs:
       RUNNER_URL: ${{ vars.RUNNER_URL }}
       RUNNER_GROUP: ${{ vars.RUNNER_GROUP }}
       RUNNER_TOKEN: ${{ vars.RUNNER_TOKEN }}
+    needs: build_image
     steps:
     - uses: actions/checkout@v4
     - name: Start container
