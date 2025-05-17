@@ -1,9 +1,5 @@
 name: Container build
 on: push
-
-env:
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
-
 jobs:
   build_image:
     runs-on: container-builder
@@ -24,7 +20,7 @@ jobs:
         RUNNER_NAME: ${{ vars.RUNNER_NAME }}
         RUNNER_URL: ${{ vars.RUNNER_URL }}
         RUNNER_GROUP: ${{ vars.RUNNER_GROUP }}
-        RUNNER_TOKEN: ${{ vars.RUNNER_TOKEN }}
+        RUNNER_TOKEN: ${{ secrets.RUNNER_TOKEN }}
       run: |
         env
         ./scripts/start.sh --name ${{ vars.CONTAINER_NAME }} --image ${{ vars.IMAGE_NAME }} --version latest
