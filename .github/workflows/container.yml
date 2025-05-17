@@ -1,0 +1,15 @@
+name: Container build
+on: push
+jobs:
+  build_image:
+    runs-on: container-builder
+    steps:
+    - name: Build container image
+      run: |
+        ./scripts/build.sh --name ${{ vars.IMAGE_NAME }} --version latest --build-file-path "./Dockerfile"
+  start_container:
+    runs-on: container-builder
+    steps:
+    - name: Start container
+      run: |
+        ./scripts/start.sh --name ${{ vars.CONTAINER_NAME }} --image ${{ vars.IMAGE_NAME }} --version latest
