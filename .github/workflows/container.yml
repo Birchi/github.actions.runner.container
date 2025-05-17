@@ -6,6 +6,7 @@ jobs:
     steps:
     - name: Build container image
       run: |
+        echo $(pwd)
         ./scripts/build.sh --name ${IMAGE_NAME} --version latest --build-file-path "./Dockerfile"
   start_container:
     runs-on: container-builder
