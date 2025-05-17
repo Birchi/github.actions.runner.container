@@ -1,5 +1,9 @@
 name: Container build
 on: push
+
+env:
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+
 jobs:
   build_image:
     runs-on: container-builder
